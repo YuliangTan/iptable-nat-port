@@ -14,8 +14,6 @@ for num in range(100,256):
         command1="iptables -t nat -A PREROUTING -d "+NATIP+" -p tcp --dport "+str(num2)+" -j DNAT --to-destination "+IPS+str(num)+":"+str(num2)
         command2="iptables -t nat -A PREROUTING -d "+NATIP+" -p udp --dport "+str(num2)+" -j DNAT --to-destination "+IPS+str(num)+":"+str(num2)
       command4="iptables -A INPUT -p tcp --dport "+str(num1)+" --syn -m recent --name webpool --rcheck --seconds 60 --hitcount 10 -j DROP"
-      command3="iptables -A INPUT -p udp --dport "+str(num1)+" --syn -m recent --name webpool --rcheck --seconds 60 --hitcount 10 -j DROP"
       os.system(command1)
       os.system(command2)
       os.system(command4)
-      os.system(command3)
